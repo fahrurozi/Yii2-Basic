@@ -44,22 +44,41 @@ $config = [
                 ],
             ],
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            // uncomment if you want to cache RBAC items hierarchy
+            // 'cache' => 'cache',
+        ],
         'db' => $db,
-        
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => [],
         ],
     ],
     'params' => $params,
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
-            'enableUnconfirmedLogin'=>true,
-            'admins'=>['admin', 'halo']
+            'enableUnconfirmedLogin' => true,
+            'admins' => ['admin', 'halo', 'john']
         ],
+        'admin' => [
+            'class'=>'mdm\admin\Module',
+            'layout' => 'left-menu', // defaults to null, using the application's layout without the menu
+            // other available values are 'right-menu' and 'top-menu'
+            'mainLayout'=> '@app/views/layouts/main.php'
+        ],
+    ],
+    'as access' => [
+        'class'=> 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            // 'site/*',
+            // '*',
+            'user/security/login',
+            'user/security/logout'
+        ]
     ],
 ];
 
