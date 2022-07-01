@@ -70,6 +70,9 @@ $config = [
             // other available values are 'right-menu' and 'top-menu'
             'mainLayout'=> '@app/views/layouts/main.php'
         ],
+        'book' => [
+            'class' => 'app\modules\book\Module',
+        ],
     ],
     'as access' => [
         'class'=> 'mdm\admin\components\AccessControl',
